@@ -27,9 +27,31 @@ class Board {
                                                                 y: CGFloat(line) * pxFieldSize + 50,
                                                                 width: pxFieldSize,
                                                                 height: pxFieldSize))
+                graphics[line][row]?.backgroundColor = .darkGray
                 graphics[line][row]!.image = TEmpty.image
                 gameWindow.addSubview(graphics[line][row]!)
             }
         }
+    }
+    
+    func updateMap(_ player : SnakeHead,_ apple : GameObject) {
+        for line in 1..<fields-1 {
+            for row in 1..<fields-1 {
+                field[line][row] = fieldCondition.empty
+            }
+        }
+        field[Int(apple.boardPos.y)][Int(apple.boardPos.x)] = fieldCondition.apple
+    }
+    
+    func updateGraphics(_ player : SnakeHead,_ apple : GameObject){
+        for line in 1..<fields-1 {
+            for row in 1..<fields-1 {
+                if field[line][row] == fieldCondition.empty {
+                    graphics[line][row]?.image = TEmpty.image; break;
+                }
+            }
+        }
+        graphics[Int(apple.boardPos.y)][Int(apple.boardPos.x)]?.image = apple.imageObj.image
+        graphics[Int(player.boardPos.y)][Int(player.boardPos.x)]?.image = player.imageObj.image
     }
 }

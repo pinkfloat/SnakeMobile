@@ -9,22 +9,27 @@ import UIKit
 
 class GameViewController: UIViewController {
     @IBOutlet weak var gameWindow: UIView!
-    lazy var board = Board(gameWindow)
-    var player = GameObject(boardPosition: CGPoint(x: 0, y: 0), image: THeadRight)
-    
-    lazy var testView = UIImageView(frame: CGRect(x: 0, y: 0, width: gameWindow.frame.size.width/20, height: gameWindow.frame.size.width/20))
+    lazy var snake = Game(gameWindow)
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        initNewGame()
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: snake.isRunning) { timer in
+            self.snake.update()
+        }
     }
-    
-    private func initNewGame() {
-        //let _ = board
-        board.graphics[13][10]?.image = player.imageObj.image
+    @IBAction func moveUp(_ sender: Any) {
+        snake.player.changeDirUp()
+    }
+    @IBAction func moveRight(_ sender: Any) {
+        snake.player.changeDirRight()
+    }
+    @IBAction func moveDown(_ sender: Any) {
+        snake.player.changeDirDown()
+    }
+    @IBAction func moveLeft(_ sender: Any) {
+        snake.player.changeDirLeft()
     }
 }

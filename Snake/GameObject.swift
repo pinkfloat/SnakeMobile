@@ -19,4 +19,8 @@ class GameObject {
         boardPos = boardPosition
         imageObj = image
     }
+    
+    convenience init(boardPosition : CGPoint) {
+        self.init(boardPosition : boardPosition, image : TApple)
+    }
 }
