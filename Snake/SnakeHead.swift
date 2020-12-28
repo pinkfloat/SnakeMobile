@@ -27,10 +27,10 @@ class SnakeHead : GameObject {
     
     private func getHeadImage() {
         switch (dir) {
-            case Direction.up : imageObj = THeadUp; break;
-            case Direction.right : imageObj = THeadRight; break;
-            case Direction.down : imageObj = THeadDown; break;
-            case Direction.left : imageObj = THeadLeft; break;
+            case Direction.up: imageObj = THeadUp; break;
+            case Direction.right: imageObj = THeadRight; break;
+            case Direction.down: imageObj = THeadDown; break;
+            case Direction.left: imageObj = THeadLeft; break;
         }
     }
     
@@ -56,6 +56,16 @@ class SnakeHead : GameObject {
         if dir != Direction.left {
             dir = Direction.right
             imageObj = THeadRight
+        }
+    }
+    func moveForward() {
+        oldPos = boardPos
+        oldDir = dir
+        switch(dir) {
+            case Direction.up: boardPos.y -= 1; break;
+            case Direction.right: boardPos.x += 1; break;
+            case Direction.down: boardPos.y += 1; break;
+            case Direction.left: boardPos.x -= 1; break;
         }
     }
 }

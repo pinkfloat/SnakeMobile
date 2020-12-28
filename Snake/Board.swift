@@ -47,7 +47,7 @@ class Board {
         for line in 1..<fields-1 {
             for row in 1..<fields-1 {
                 if field[line][row] == fieldCondition.empty {
-                    graphics[line][row]?.image = TEmpty.image; break;
+                    graphics[line][row]?.image = TEmpty.image;
                 }
             }
         }

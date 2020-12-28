@@ -20,6 +20,7 @@ class Game {
     }
     
     func update(){
+        self.player.moveForward()
         self.board.updateMap(self.player, self.apple)
         self.board.updateGraphics(self.player, self.apple)
     }
