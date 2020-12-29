@@ -16,7 +16,10 @@ class GameViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: snake.isRunning) { timer in
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+            if self.snake.isRunning == false {
+                timer.invalidate()
+            }
             self.snake.update()
         }
     }
@@ -31,5 +34,8 @@ class GameViewController: UIViewController {
     }
     @IBAction func moveLeft(_ sender: Any) {
         snake.player.changeDirLeft()
+    }
+    @IBAction func endGame(_ sender: UIButton) {
+        self.snake.isRunning = false
     }
 }

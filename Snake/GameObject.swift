@@ -13,6 +13,9 @@ enum Direction: Int {
 
 class GameObject {
     var boardPos : CGPoint
+    var oldPos : CGPoint?
+    var dir : Direction?
+    var oldDir : Direction?
     var imageObj : imagePart
     
     init(boardPosition : CGPoint, image : imagePart) {

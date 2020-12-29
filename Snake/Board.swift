@@ -41,6 +41,9 @@ class Board {
             }
         }
         field[Int(apple.boardPos.y)][Int(apple.boardPos.x)] = fieldCondition.apple
+        for part in player.Parts {
+            field[Int(part.boardPos.y)][Int(part.boardPos.x)] = fieldCondition.snake
+        }
     }
     
     func updateGraphics(_ player : SnakeHead,_ apple : GameObject){
@@ -53,5 +56,8 @@ class Board {
         }
         graphics[Int(apple.boardPos.y)][Int(apple.boardPos.x)]?.image = apple.imageObj.image
         graphics[Int(player.boardPos.y)][Int(player.boardPos.x)]?.image = player.imageObj.image
+        for part in player.Parts {
+            graphics[Int(part.boardPos.y)][Int(part.boardPos.x)]?.image = part.imageObj.image
+        }
     }
 }

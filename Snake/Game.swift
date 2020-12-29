@@ -14,13 +14,18 @@ class Game {
     var apple : GameObject
     
     init(_ gameWindow : UIView){
-        player = SnakeHead(boardPosition: CGPoint.init(x: 13, y: 10), direction: Direction.right)
+        player = SnakeHead(boardPosition: CGPoint.init(x: 10, y: 10), direction: Direction.right)
+        let part1 = SnakePart(boardPosition: CGPoint.init(x: 9, y: 10), direction: Direction.right, previousPart : player)
+        let part2 = SnakePart(boardPosition: CGPoint.init(x: 8, y: 10), direction: Direction.right, previousPart : part1, image: TTailRight)
+        player.Parts.append(part1)
+        player.Parts.append(part2)
         apple = GameObject(boardPosition: CGPoint.init(x: 2, y: 2))
         board = Board(gameWindow)
     }
     
     func update(){
-        self.player.moveForward()
+        self.player.moveForward()       //Warning: Game will actually crash if Snake runs outside
+        self.player.letPartsFollow()
         self.board.updateMap(self.player, self.apple)
         self.board.updateGraphics(self.player, self.apple)
     }
