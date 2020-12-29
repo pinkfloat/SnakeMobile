@@ -20,6 +20,7 @@ class GameObject {
     
     init(boardPosition : CGPoint, image : imagePart) {
         boardPos = boardPosition
+        oldPos = boardPosition
         imageObj = image
     }
     

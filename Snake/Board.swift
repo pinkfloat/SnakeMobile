@@ -60,4 +60,37 @@ class Board {
             graphics[Int(part.boardPos.y)][Int(part.boardPos.x)]?.image = part.imageObj.image
         }
     }
+    
+    func checkCollision(_ player : SnakeHead,_ apple : GameObject) -> Bool {
+        if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.empty {
+            return true
+        }
+        else if player.Parts.count == fields*fields-1 {
+            print("Player won, but no one will ever notice...")
+            return false
+        }
+        else if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.apple {
+            //resize snake
+            let newPart = SnakePart(boardPosition: player.boardPos, direction: player.dir!, previousPart: player.Parts.last!)
+            player.addSnakePart(newPart)
+            replaceApple(player, apple)
+            return true
+        }
+        else if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.wall {
+            print("Player crashes through wall")
+            return false
+        }
+        else if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.snake {
+            print("Player ate himself")
+            return false
+        }
+        else {
+           print("Player managed to came to an uninitialized field aka wormhole")
+            return false
+        }
+    }
+    
+    func replaceApple(_ player : SnakeHead,_ apple : GameObject) {
+        
+    }
 }

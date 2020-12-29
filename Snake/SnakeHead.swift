@@ -14,7 +14,6 @@ class SnakeHead : GameObject {
         super.init(boardPosition: boardPosition, image: image)
         dir = direction
         oldDir = direction
-        oldPos = boardPosition
     }
     
     convenience init(boardPosition : CGPoint, direction : Direction) {
@@ -57,6 +56,10 @@ class SnakeHead : GameObject {
             dir = Direction.right
             imageObj = THeadRight
         }
+    }
+    
+    func addSnakePart(_ newPart : SnakePart) {
+        Parts.append(newPart)
     }
     
     func moveForward() {
