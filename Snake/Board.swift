@@ -27,7 +27,17 @@ class Board {
                                                                 y: CGFloat(line) * pxFieldSize + 50,
                                                                 width: pxFieldSize,
                                                                 height: pxFieldSize))
-                graphics[line][row]?.backgroundColor = .darkGray
+                if line == 0 || line == fields-1 {
+                    field[line][row] = fieldCondition.wall
+                    graphics[line][row]?.backgroundColor = .white
+                }
+                else if row == 0 || row == fields-1 {
+                    field[line][row] = fieldCondition.wall
+                    graphics[line][row]?.backgroundColor = .white
+                }
+                else {
+                    graphics[line][row]?.backgroundColor = .darkGray
+                }
                 graphics[line][row]!.image = TEmpty.image
                 gameWindow.addSubview(graphics[line][row]!)
             }

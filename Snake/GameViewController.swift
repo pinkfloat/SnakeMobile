@@ -20,7 +20,9 @@ class GameViewController: UIViewController {
             if self.snake.isRunning == false {
                 timer.invalidate()
             }
-            self.snake.update()
+            else {
+                self.snake.update()
+            }
         }
     }
     @IBAction func moveUp(_ sender: Any) {
