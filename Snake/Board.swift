@@ -83,7 +83,7 @@ class Board {
             //resize snake
             let newPart = SnakePart(boardPosition: player.boardPos, direction: player.dir!, previousPart: player.Parts.last!)
             player.addSnakePart(newPart)
-            replaceApple(player, apple)
+            replaceApple(apple)
             return true
         }
         else if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.wall {
@@ -100,7 +100,33 @@ class Board {
         }
     }
     
-    func replaceApple(_ player : SnakeHead,_ apple : GameObject) {
-        
+    func replaceApple(_ apple : GameObject) {
+        var foundEmptyField = false
+        var testPos : CGPoint
+        var count = 0
+        while !foundEmptyField {
+            //try random position
+            testPos = CGPoint(x: Int.random(in: 1..<fields-1), y: Int.random(in: 1..<fields-1))
+            if field[Int(testPos.y)][Int(testPos.x)] == fieldCondition.empty {
+                apple.boardPos = testPos
+                foundEmptyField = true
+            }
+            //if random positioning took too long, find next empty field
+            else if count >= 10 {
+                outer: for line in 1..<fields-1 {
+                    for row in 1..<fields-1 {
+                        if field[line][row] == fieldCondition.empty
+                        {
+                            apple.boardPos=CGPoint(x: row, y: line)
+                            foundEmptyField = true
+                            break outer
+                        }
+                    }
+                }
+            }
+            else {
+                count+=1
+            }
+        }
     }
 }

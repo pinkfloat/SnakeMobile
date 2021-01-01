@@ -21,7 +21,7 @@ class Game {
         player.Parts.append(part2)
         apple = GameObject(boardPosition: CGPoint.init(x: 13, y: 13))
         board = Board(gameWindow)
-        self.board.replaceApple(player, apple)
+        self.board.replaceApple(apple)
     }
     
     func update() {
