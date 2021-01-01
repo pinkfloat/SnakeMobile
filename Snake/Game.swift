@@ -12,6 +12,7 @@ class Game {
     var board : Board
     var player : SnakeHead
     var apple : GameObject
+    var appleCounterLabel : AppleCounterLabel
     
     init(_ gameWindow : UIView){
         player = SnakeHead(boardPosition: CGPoint.init(x: 10, y: 10), direction: Direction.right)
@@ -21,6 +22,8 @@ class Game {
         player.Parts.append(part2)
         apple = GameObject(boardPosition: CGPoint.init(x: 13, y: 13))
         board = Board(gameWindow)
+        appleCounterLabel = AppleCounterLabel(frame: CGRect(x: board.pxSize-70, y: 0, width: 70, height: 30))
+        gameWindow.addSubview(appleCounterLabel)
         self.board.replaceApple(apple)
     }
     
@@ -29,6 +32,6 @@ class Game {
         self.player.letPartsFollow()
         self.board.updateMap(self.player, self.apple)
         self.board.updateGraphics(self.player, self.apple)
-        isRunning = self.board.checkCollision(self.player, self.apple)
+        isRunning = self.board.checkCollision(self.player, self.apple, self.appleCounterLabel)
     }
 }

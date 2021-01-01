@@ -71,7 +71,7 @@ class Board {
         }
     }
     
-    func checkCollision(_ player : SnakeHead,_ apple : GameObject) -> Bool {
+    func checkCollision(_ player : SnakeHead,_ apple : GameObject,_ appleCounterLabel : AppleCounterLabel) -> Bool {
         if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.empty {
             return true
         }
@@ -80,6 +80,7 @@ class Board {
             return false
         }
         else if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.apple {
+            appleCounterLabel.countUp()
             //resize snake
             let newPart = SnakePart(boardPosition: player.boardPos, direction: player.dir!, previousPart: player.Parts.last!)
             player.addSnakePart(newPart)
