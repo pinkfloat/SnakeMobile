@@ -13,6 +13,7 @@ class Game {
     var player : SnakeHead
     var apple : GameObject
     var appleCounterLabel : AppleCounterLabel
+    var alert : UIAlertController?
     
     init(_ gameWindow : UIView){
         player = SnakeHead(boardPosition: CGPoint.init(x: 10, y: 10), direction: Direction.right)
@@ -29,12 +30,21 @@ class Game {
         gameWindow.addSubview(appleCounterLabel)
     }
     
+    private func setAlert(lose: Bool, message: String){
+        if lose {
+            alert = UIAlertController(title: "Game over", message: message, preferredStyle: .alert)
+        }
+        else {
+            alert = UIAlertController(title: "You win", message: message, preferredStyle: .alert)
+        }
+    }
+    
     private func checkCollision() -> Bool {
         if board.field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.empty {
             return true
         }
         else if player.Parts.count == board.fields*board.fields-1 {
-            print("Player won, but no one will ever notice...")
+            setAlert(lose: false, message: "Player won, but no one will ever notice...")
             return false
         }
         else if board.field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.apple {
@@ -46,15 +56,15 @@ class Game {
             return true
         }
         else if board.field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.wall {
-            print("Player crashes through wall")
+            setAlert(lose: true, message:"Player crashes through wall!")
             return false
         }
         else if board.field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.snake {
-            print("Player ate himself")
+            setAlert(lose: true, message:"Player ate himself!")
             return false
         }
         else {
-           print("Player managed to came to an uninitialized field aka wormhole")
+            setAlert(lose: true, message:"Player managed to came to an uninitialized field aka wormhole!")
             return false
         }
     }

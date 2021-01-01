@@ -19,6 +19,12 @@ class GameViewController: UIViewController {
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
             if self.snake.isRunning == false {
                 timer.invalidate()
+                if (self.snake.alert != nil) {
+                    self.present(self.snake.alert!, animated: true){
+                        sleep(5)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
             }
             else {
                 self.snake.update()
