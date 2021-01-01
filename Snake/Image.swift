@@ -2,8 +2,6 @@
 //  Image.swift
 //  Snake
 //
-//  Image source: https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5
-//
 //  Created by Echo on 26.12.20.
 //
 
