@@ -44,63 +44,6 @@ class Board {
         }
     }
     
-    func updateMap(_ player : SnakeHead,_ apple : GameObject) {
-        for line in 1..<fields-1 {
-            for row in 1..<fields-1 {
-                field[line][row] = fieldCondition.empty
-            }
-        }
-        field[Int(apple.boardPos.y)][Int(apple.boardPos.x)] = fieldCondition.apple
-        for part in player.Parts {
-            field[Int(part.boardPos.y)][Int(part.boardPos.x)] = fieldCondition.snake
-        }
-    }
-    
-    func updateGraphics(_ player : SnakeHead,_ apple : GameObject){
-        for line in 1..<fields-1 {
-            for row in 1..<fields-1 {
-                if field[line][row] == fieldCondition.empty {
-                    graphics[line][row]?.image = TEmpty.image;
-                }
-            }
-        }
-        graphics[Int(apple.boardPos.y)][Int(apple.boardPos.x)]?.image = apple.imageObj.image
-        graphics[Int(player.boardPos.y)][Int(player.boardPos.x)]?.image = player.imageObj.image
-        for part in player.Parts {
-            graphics[Int(part.boardPos.y)][Int(part.boardPos.x)]?.image = part.imageObj.image
-        }
-    }
-    
-    func checkCollision(_ player : SnakeHead,_ apple : GameObject,_ appleCounterLabel : AppleCounterLabel) -> Bool {
-        if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.empty {
-            return true
-        }
-        else if player.Parts.count == fields*fields-1 {
-            print("Player won, but no one will ever notice...")
-            return false
-        }
-        else if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.apple {
-            appleCounterLabel.countUp()
-            //resize snake
-            let newPart = SnakePart(boardPosition: player.boardPos, direction: player.dir!, previousPart: player.Parts.last!)
-            player.addSnakePart(newPart)
-            replaceApple(apple)
-            return true
-        }
-        else if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.wall {
-            print("Player crashes through wall")
-            return false
-        }
-        else if field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.snake {
-            print("Player ate himself")
-            return false
-        }
-        else {
-           print("Player managed to came to an uninitialized field aka wormhole")
-            return false
-        }
-    }
-    
     func replaceApple(_ apple : GameObject) {
         var foundEmptyField = false
         var testPos : CGPoint
@@ -128,6 +71,33 @@ class Board {
             else {
                 count+=1
             }
+        }
+    }
+    
+    func updateMap(_ player : SnakeHead,_ apple : GameObject) {
+        for line in 1..<fields-1 {
+            for row in 1..<fields-1 {
+                field[line][row] = fieldCondition.empty
+            }
+        }
+        field[Int(apple.boardPos.y)][Int(apple.boardPos.x)] = fieldCondition.apple
+        for part in player.Parts {
+            field[Int(part.boardPos.y)][Int(part.boardPos.x)] = fieldCondition.snake
+        }
+    }
+    
+    func updateGraphics(_ player : SnakeHead,_ apple : GameObject){
+        for line in 1..<fields-1 {
+            for row in 1..<fields-1 {
+                if field[line][row] == fieldCondition.empty {
+                    graphics[line][row]?.image = TEmpty.image;
+                }
+            }
+        }
+        graphics[Int(apple.boardPos.y)][Int(apple.boardPos.x)]?.image = apple.imageObj.image
+        graphics[Int(player.boardPos.y)][Int(player.boardPos.x)]?.image = player.imageObj.image
+        for part in player.Parts {
+            graphics[Int(part.boardPos.y)][Int(part.boardPos.x)]?.image = part.imageObj.image
         }
     }
 }
