@@ -29,7 +29,6 @@ class Game {
     
     func update() {
         self.player.moveForward()
-        self.player.letPartsFollow()
         self.board.updateMap(self.player, self.apple)
         self.board.updateGraphics(self.player, self.apple)
         isRunning = self.board.checkCollision(self.player, self.apple, self.appleCounterLabel)

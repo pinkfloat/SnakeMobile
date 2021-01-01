@@ -17,17 +17,14 @@ class SnakeHead : GameObject {
     }
     
     convenience init(boardPosition : CGPoint, direction : Direction) {
-        self.init(boardPosition : boardPosition, direction : direction, image : TApple)
-        getHeadImage()
-    }
-    
-    private func getHeadImage() {
-        switch (dir!) {
-            case Direction.up:      imageObj = THeadUp; break;
-            case Direction.right:   imageObj = THeadRight; break;
-            case Direction.down:    imageObj = THeadDown; break;
-            case Direction.left:    imageObj = THeadLeft; break;
+        let image : imagePart
+        switch (direction) {
+            case Direction.up:      image = THeadUp; break;
+            case Direction.right:   image = THeadRight; break;
+            case Direction.down:    image = THeadDown; break;
+            case Direction.left:    image = THeadLeft; break;
         }
+        self.init(boardPosition : boardPosition, direction : direction, image : image)
     }
     
     func changeDirUp() {
@@ -71,9 +68,7 @@ class SnakeHead : GameObject {
             case Direction.down:    boardPos.y += 1; break;
             case Direction.left:    boardPos.x -= 1; break;
         }
-    }
-    
-    func letPartsFollow() {
+        
         for part in Parts.reversed() {
             //follow the previous snakepart
             if part != Parts.first {
