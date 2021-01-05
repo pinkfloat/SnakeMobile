@@ -19,9 +19,9 @@ class Game {
     var audio: AVAudioPlayer?
     
     init(_ gameWindow : UIView){
-        player = SnakeHead(boardPosition: CGPoint.init(x: 10, y: 10), direction: Direction.right)
-        let part1 = SnakePart(boardPosition: CGPoint.init(x: 9, y: 10), direction: Direction.right, previousPart : player)
-        let part2 = SnakePart(boardPosition: CGPoint.init(x: 8, y: 10), direction: Direction.right, previousPart : part1, image: TTailRight)
+        player = SnakeHead(boardPosition: CGPoint.init(x: 5, y: 10), direction: Direction.right)
+        let part1 = SnakePart(boardPosition: CGPoint.init(x: 4, y: 10), direction: Direction.right, previousPart : player)
+        let part2 = SnakePart(boardPosition: CGPoint.init(x: 3, y: 10), direction: Direction.right, previousPart : part1, image: TTailRight)
         player.Parts.append(part1)
         player.Parts.append(part2)
         
@@ -70,6 +70,7 @@ class Game {
         }
         else if player.Parts.count == board.fields*board.fields-1 {
             setAlert(lose: false, message: "Player won, but no one will ever notice...")
+            playSound(soundName: "win", format: "wav")
             return false
         }
         else if board.field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.apple {
@@ -85,14 +86,17 @@ class Game {
         }
         else if board.field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.wall {
             setAlert(lose: true, message:"Player crashes through wall!")
+            playSound(soundName: "lose", format: "wav")
             return false
         }
         else if board.field[Int(player.boardPos.y)][Int(player.boardPos.x)] == fieldCondition.snake {
             setAlert(lose: true, message:"Player ate himself!")
+            playSound(soundName: "lose", format: "wav")
             return false
         }
         else {
             setAlert(lose: true, message:"Player managed to came to an uninitialized field aka wormhole!")
+            playSound(soundName: "lose", format: "wav")
             return false
         }
     }
