@@ -14,7 +14,7 @@ enum fieldCondition {
 class Board {
     let pxSize : CGFloat
     let pxFieldSize : CGFloat
-    let fields : Int = 20            //means the board got the size 20x20
+    let fields : Int = global.boardSize
     lazy var field : [[fieldCondition]] = Array(repeating: Array(repeating: fieldCondition.empty, count: fields), count: fields)
     lazy var graphics : [[UIImageView?]] = Array(repeating: Array(repeating: nil, count: fields), count: fields)
     

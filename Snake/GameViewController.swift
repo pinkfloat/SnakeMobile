@@ -16,7 +16,8 @@ class GameViewController: UIViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+        sleep(1)
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(global.gameSpeed), repeats: true) { timer in
             if self.snake.isRunning == false {
                 timer.invalidate()
                 if (self.snake.alert != nil) {
