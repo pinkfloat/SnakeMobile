@@ -4,8 +4,11 @@
 //
 //  Created by Echo on 05.01.21.
 //
+//  used source for storing and fetching data:
+//  https://stackoverflow.com/questions/25586593/coredata-swift-how-to-save-and-load-data
 
 import UIKit
+import CoreData
 
 struct globalSettings {
     var boardSize : Int = 20
@@ -16,6 +19,10 @@ struct globalSettings {
 var global = globalSettings()
 
 class SettingsViewController: UIViewController {
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var context : NSManagedObjectContext!
+    
     @IBOutlet weak var boardSizeSlider: UISlider!
     @IBOutlet weak var boardValueLabel: UILabel!
     @IBOutlet weak var gameSpeedSlider: UISlider!
@@ -24,6 +31,9 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        context = appDelegate.persistentContainer.viewContext
+        fetchData()
+        
         boardSizeSlider.maximumValue=30
         boardSizeSlider.minimumValue=15
         boardSizeSlider.setValue(Float(global.boardSize), animated: false)
@@ -35,6 +45,38 @@ class SettingsViewController: UIViewController {
         speedValueLabel.text = String(format: "%.1f", showSpeed)
         soundSwitch.setOn(global.sound, animated: false)
     }
+    
+    func fetchData() {
+        print("Fetching Data..")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                global.boardSize = data.value(forKey: "boardSize") as! Int
+                global.gameSpeed = data.value(forKey: "gameSpeed") as! Float
+                global.sound = data.value(forKey: "sound") as! Bool
+            }
+        } catch {
+            print("Fetching data Failed!")
+        }
+    }
+    
+    func saveData() {
+        let entity = NSEntityDescription.entity(forEntityName: "Settings", in: context)
+        let actualSettings = NSManagedObject(entity: entity!, insertInto: context)
+        actualSettings.setValue(global.boardSize, forKey: "boardSize")
+        actualSettings.setValue(global.gameSpeed, forKey: "gameSpeed")
+        actualSettings.setValue(global.sound, forKey: "sound")
+        
+        print("Storing Data..")
+        do {
+            try context.save()
+        } catch {
+            print("Storing Data Failed")
+        }
+    }
+    
     @IBAction func changeBoardSize(_ sender: UISlider) {
         let size = Int(sender.value)
         global.boardSize = size
@@ -46,5 +88,8 @@ class SettingsViewController: UIViewController {
     }
     @IBAction func changeSoundOption(_ sender: UISwitch) {
         global.sound = sender.isOn
+    }
+    @IBAction func exitSettings(_ sender: UIButton) {
+        saveData()
     }
 }
