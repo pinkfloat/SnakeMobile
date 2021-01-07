@@ -12,13 +12,26 @@
         <attribute name="score9" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="score10" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="HighScoreUsers" representedClassName="HighScoreUsers" syncable="YES" codeGenerationType="class">
+        <attribute name="name1" optional="YES" attributeType="String"/>
+        <attribute name="name2" optional="YES" attributeType="String"/>
+        <attribute name="name3" optional="YES" attributeType="String"/>
+        <attribute name="name4" optional="YES" attributeType="String"/>
+        <attribute name="name5" optional="YES" attributeType="String"/>
+        <attribute name="name6" optional="YES" attributeType="String"/>
+        <attribute name="name7" optional="YES" attributeType="String"/>
+        <attribute name="name8" optional="YES" attributeType="String"/>
+        <attribute name="name9" optional="YES" attributeType="String"/>
+        <attribute name="name10" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Settings" representedClassName="Settings" syncable="YES" codeGenerationType="class">
         <attribute name="boardSize" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="gameSpeed" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="sound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Settings" positionX="-63" positionY="-18" width="128" height="88"/>
         <element name="Highscores" positionX="-54" positionY="18" width="128" height="193"/>
+        <element name="Settings" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="HighScoreUsers" positionX="-54" positionY="72" width="128" height="193"/>
     </elements>
 </model>

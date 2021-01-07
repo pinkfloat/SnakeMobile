@@ -29,7 +29,7 @@ class Game {
         board = Board(gameWindow)
         self.board.replaceApple(apple)
         
-        appleCounterLabel = AppleCounterLabel(frame: CGRect(x: board.pxSize-70, y: 0, width: 70, height: 30))
+        appleCounterLabel = AppleCounterLabel(frame: CGRect(x: board.pxSize-70, y: 0, width: 70, height: 30), score: 0)
         gameWindow.addSubview(appleCounterLabel)
     }
     
@@ -100,6 +100,25 @@ class Game {
             setAlert(lose: true, message:"Player managed to came to an uninitialized field aka wormhole!")
             playSound(soundName: "lose", format: "wav")
             return false
+        }
+    }
+    
+    func checkIfHighScore(){
+        for idx in 0..<10{
+            if appleCounterLabel.labelScore > globalHighScores[idx] {
+                var idy = 8
+                while idy >= idx {
+                    globalHighScores[idy+1] = globalHighScores[idy]
+                    idy -= 1
+                }
+                globalHighScores[idx] = appleCounterLabel.labelScore
+                
+                //TODO: call HighScoreViewController
+                //TODO: get username
+                //TODO: save data
+                
+                break
+            }
         }
     }
     

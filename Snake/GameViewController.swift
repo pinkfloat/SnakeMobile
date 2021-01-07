@@ -26,6 +26,7 @@ class GameViewController: UIViewController {
                         self.dismiss(animated: true, completion: nil)
                     }
                 }
+                self.snake.checkIfHighScore()
             }
             else {
                 self.snake.update()

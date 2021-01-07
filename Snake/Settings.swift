@@ -46,7 +46,7 @@ class SettingsViewController: UIViewController {
         soundSwitch.setOn(global.sound, animated: false)
     }
     
-    func fetchData() {
+    private func fetchData() {
         print("Fetching Data..")
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
         request.returnsObjectsAsFaults = false
@@ -62,7 +62,7 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    func saveData() {
+    private func saveData() {
         let entity = NSEntityDescription.entity(forEntityName: "Settings", in: context)
         let actualSettings = NSManagedObject(entity: entity!, insertInto: context)
         actualSettings.setValue(global.boardSize, forKey: "boardSize")

@@ -29,7 +29,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Wur-kN-l8q">
-                                <rect key="frame" x="80" y="422" width="255" height="52"/>
+                                <rect key="frame" x="80" y="491" width="255" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor"/>
                                 <state key="normal" title="Settings">
@@ -40,7 +40,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="qMi-eJ-BPw">
-                                <rect key="frame" x="80" y="490" width="255" height="52"/>
+                                <rect key="frame" x="80" y="559" width="255" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor"/>
                                 <state key="normal" title="Exit">
@@ -48,6 +48,17 @@
                                 </state>
                                 <connections>
                                     <action selector="exitButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D3A-gR-uDO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="oZh-bU-k4y">
+                                <rect key="frame" x="80" y="422" width="255" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                <state key="normal" title="Highscoes">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cZT-nZ-WAt" kind="show" id="qZn-2r-g3c"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -89,7 +100,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="1" maxValue="3" id="5pD-iO-lFA">
-                                <rect key="frame" x="68" y="280" width="255" height="30"/>
+                                <rect key="frame" x="68" y="279" width="255" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="minimumTrackTintColor" systemColor="systemOrangeColor"/>
                                 <connections>
@@ -125,7 +136,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="boardval" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ae9-oh-Yed">
-                                <rect key="frame" x="221" y="208" width="100" height="24"/>
+                                <rect key="frame" x="221" y="207" width="100" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -154,7 +165,52 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UwS-IY-CIS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="083-1N-DYu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1528.985507246377" y="103.79464285714285"/>
+            <point key="canvasLocation" x="2213" y="104"/>
+        </scene>
+        <!--High Score View Controller-->
+        <scene sceneID="g5x-oj-4kP">
+            <objects>
+                <viewController id="cZT-nZ-WAt" customClass="HighScoreViewController" customModule="Snake" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nqQ-bA-8Vy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZL-Ux-D1e">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ak0-2j-BZQ">
+                                        <rect key="frame" x="51" y="760" width="80" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="tKD-wD-xfx" kind="unwind" unwindAction="unwindToMenuWithSegue:" id="z7l-I5-OR8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="AIb-rX-k1X"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JZL-Ux-D1e" firstAttribute="top" secondItem="AIb-rX-k1X" secondAttribute="top" id="0pA-Sh-xsp"/>
+                            <constraint firstItem="AIb-rX-k1X" firstAttribute="trailing" secondItem="JZL-Ux-D1e" secondAttribute="trailing" id="IGV-ya-eCL"/>
+                            <constraint firstItem="JZL-Ux-D1e" firstAttribute="leading" secondItem="AIb-rX-k1X" secondAttribute="leading" id="Ptz-xR-ihf"/>
+                            <constraint firstItem="AIb-rX-k1X" firstAttribute="bottom" secondItem="JZL-Ux-D1e" secondAttribute="bottom" id="Wdh-3r-pu7"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="EcL-AZ-mz4"/>
+                    <connections>
+                        <outlet property="highScoreWindow" destination="JZL-Ux-D1e" id="cSs-1a-79z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P63-ZO-tKM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="tKD-wD-xfx" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1516" y="104"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="WoQ-ac-Xf6">
