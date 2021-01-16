@@ -23,8 +23,6 @@ class GameViewController: UIViewController {
         textFieldInfoLabel.text = "New Highscore! Your Name?"
         textFieldInfoLabel.isHidden = true
         textfieldForUserName.isHidden = true
-        //gameWindow.addSubview(textFieldInfoLabel)
-        //gameWindow.addSubview(textfieldForUserName)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -85,7 +83,7 @@ class GameViewController: UIViewController {
             self.saveData()
         }
     }
-    func saveData() {
+    private func saveData() {
         print("Storing Data..")
         var entity = NSEntityDescription.entity(forEntityName: "Highscores", in: context)
         let actualHighScore = NSManagedObject(entity: entity!, insertInto: context)

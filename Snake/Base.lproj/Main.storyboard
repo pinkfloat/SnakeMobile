@@ -156,9 +156,6 @@
                                 <state key="normal" title="Reset to default">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <action selector="resetSettings:" destination="KR4-2Z-Y87" eventType="touchUpInside" id="Kuy-tZ-Q1Z"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5C5-Hd-F0L"/>
@@ -200,8 +197,63 @@
                                             <segue destination="tKD-wD-xfx" kind="unwind" unwindAction="unwindToMenuWithSegue:" id="z7l-I5-OR8"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="4Ht-Ex-qSY">
+                                        <rect key="frame" x="221" y="760" width="160" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <state key="normal" title="Reset Highscores">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="askForHighscoreReset:" destination="cZT-nZ-WAt" eventType="touchUpInside" id="erV-va-cQr"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qml-a3-LRe">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Realy delete all Highscores?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyg-yr-qh5">
+                                                <rect key="frame" x="8" y="281" width="398" height="110"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="FTN-5t-OPe">
+                                                <rect key="frame" x="86" y="399" width="100" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Yes">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="resetHighscores:" destination="cZT-nZ-WAt" eventType="touchUpInside" id="d2A-SN-6QP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="AtV-Lx-zIW">
+                                                <rect key="frame" x="233" y="399" width="100" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="No">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="breakUpReset:" destination="cZT-nZ-WAt" eventType="touchUpInside" id="UdO-jz-PqT"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Qml-a3-LRe" firstAttribute="leading" secondItem="JZL-Ux-D1e" secondAttribute="leading" id="Vhk-87-ZaC"/>
+                                    <constraint firstItem="Qml-a3-LRe" firstAttribute="top" secondItem="JZL-Ux-D1e" secondAttribute="top" id="fSK-6z-iY3"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qml-a3-LRe" secondAttribute="trailing" id="fb3-iO-4u6"/>
+                                    <constraint firstItem="ak0-2j-BZQ" firstAttribute="top" secondItem="Qml-a3-LRe" secondAttribute="bottom" id="rKT-hv-Dp7"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="AIb-rX-k1X"/>
@@ -216,12 +268,16 @@
                     <navigationItem key="navigationItem" id="EcL-AZ-mz4"/>
                     <connections>
                         <outlet property="highScoreWindow" destination="JZL-Ux-D1e" id="cSs-1a-79z"/>
+                        <outlet property="infoLabel" destination="iyg-yr-qh5" id="u7N-JG-4yo"/>
+                        <outlet property="noButton" destination="AtV-Lx-zIW" id="SdR-yI-F0C"/>
+                        <outlet property="resetQuestionWindow" destination="Qml-a3-LRe" id="Fzd-H7-3Gw"/>
+                        <outlet property="yesButton" destination="FTN-5t-OPe" id="ciq-DG-Ajy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P63-ZO-tKM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="tKD-wD-xfx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1516" y="104"/>
+            <point key="canvasLocation" x="1515.9420289855075" y="103.79464285714285"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="WoQ-ac-Xf6">
@@ -365,6 +421,9 @@
         <image name="arrowtriangle.up.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
