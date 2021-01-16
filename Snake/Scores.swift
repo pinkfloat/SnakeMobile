@@ -71,7 +71,7 @@ class HighScoreViewController: UIViewController {
         highScoreWindow.addSubview(titleLabel)
         
         for idx in 0..<10 {
-            let highScoreLabel = AppleCounterLabel(frame: CGRect(x: labelXPos-150, y: 3*labelYPos+idx*32, width: 200, height: 30), score: globalHighScores[idx])
+            let highScoreLabel = AppleCounterLabel(frame: CGRect(x: labelXPos-120, y: 3*labelYPos+idx*32, width: 200, height: 30), score: globalHighScores[idx])
             highScoreLabel.addName(name: globalHighScoreNames[idx])
             highScoreWindow.addSubview(highScoreLabel)
             highScoreLabels.append(highScoreLabel)

@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         context = appDelegate.persistentContainer.viewContext
+        textFieldInfoLabel.text = "New Highscore! Your Name?"
         textFieldInfoLabel.isHidden = true
         textfieldForUserName.isHidden = true
         //gameWindow.addSubview(textFieldInfoLabel)
@@ -68,8 +69,15 @@ class GameViewController: UIViewController {
     }
     @IBAction func updateHighScoreFromTextField(_ sender: UITextField) {
         if newHighScorePosition != nil {
+            //save textfield content if not empty
             if sender.text != nil && sender.text != "" {
-                globalHighScoreNames[newHighScorePosition!] = sender.text!
+                //the user name shouldn't be longer than 10 chars
+                if sender.text!.count <= 10 {
+                    globalHighScoreNames[newHighScorePosition!] = sender.text!
+                }
+                else {
+                    textFieldInfoLabel.text = "Max 10 characters!"
+                }
             }
             else {
                 globalHighScoreNames[newHighScorePosition!] = "unknown"
