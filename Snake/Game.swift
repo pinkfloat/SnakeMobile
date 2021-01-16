@@ -103,23 +103,27 @@ class Game {
         }
     }
     
-    func checkIfHighScore(){
+    func checkIfHighScore() -> Int?{
+        var newHighscorePosition : Int? = nil
         for idx in 0..<10{
+            //if the score is higher than a highscore in list
             if appleCounterLabel.labelScore > globalHighScores[idx] {
+                //set lower highscores to the next line
                 var idy = 8
                 while idy >= idx {
                     globalHighScores[idy+1] = globalHighScores[idy]
+                    globalHighScoreNames[idy+1] = globalHighScoreNames[idy]
                     idy -= 1
                 }
+                
+                //add ne highscore in list
+                newHighscorePosition = idx
                 globalHighScores[idx] = appleCounterLabel.labelScore
-                
-                //TODO: call HighScoreViewController
-                //TODO: get username
-                //TODO: save data
-                
+                globalHighScoreNames[idx] = "unknown"    //if user don't enter in next step a name, this will be saved
                 break
             }
         }
+        return newHighscorePosition
     }
     
     func update() {

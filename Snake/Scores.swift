@@ -11,6 +11,7 @@ import UIKit
 import CoreData
 
 var globalHighScores : [Int] = Array (repeating: 0, count: 10)
+var globalHighScoreNames : [String] = Array (repeating: "", count: 10)
 
 class HighScoreViewController: UIViewController {
     
@@ -32,7 +33,7 @@ class HighScoreViewController: UIViewController {
     
     private func fetchData() {
         print("Fetching Data..")
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Highscores")
+        var request = NSFetchRequest<NSFetchRequestResult>(entityName: "Highscores")
         request.returnsObjectsAsFaults = false
         do {
             let result = try context.fetch(request)
@@ -42,21 +43,19 @@ class HighScoreViewController: UIViewController {
                 }
             }
         } catch {
-            print("Fetching data Failed!")
+            print("Fetching Highscore Data Failed!")
         }
-    }
-    
-    func saveData() {
-        let entity = NSEntityDescription.entity(forEntityName: "Highscores", in: context)
-        let actualHighScore = NSManagedObject(entity: entity!, insertInto: context)
-        for idx in 0..<10 {
-            actualHighScore.setValue(globalHighScores[idx], forKey: "score\(idx+1)")
-        }
-        print("Storing Data..")
+        
+        request = NSFetchRequest<NSFetchRequestResult>(entityName: "HighscoreUsers")
         do {
-            try context.save()
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                for idx in 0..<10 {
+                    globalHighScoreNames[idx] = data.value(forKey: "name\(idx+1)") as! String
+                }
+            }
         } catch {
-            print("Storing Data Failed")
+            print("Fetching User Names Failed!")
         }
     }
     
@@ -72,7 +71,8 @@ class HighScoreViewController: UIViewController {
         highScoreWindow.addSubview(titleLabel)
         
         for idx in 0..<10 {
-            let highScoreLabel = AppleCounterLabel(frame: CGRect(x: labelXPos-50, y: 3*labelYPos+idx*32, width: 100, height: 30), score: globalHighScores[idx])
+            let highScoreLabel = AppleCounterLabel(frame: CGRect(x: labelXPos-150, y: 3*labelYPos+idx*32, width: 200, height: 30), score: globalHighScores[idx])
+            highScoreLabel.addName(name: globalHighScoreNames[idx])
             highScoreWindow.addSubview(highScoreLabel)
             highScoreLabels.append(highScoreLabel)
         }
@@ -108,5 +108,12 @@ class AppleCounterLabel : UILabel {
         let countString = NSMutableAttributedString(attributedString: stringLeftPart)
         countString.append(NSAttributedString.init(string: String(labelScore)))
         self.attributedText = countString
+    }
+    
+    func addName(name: String) {
+        let newLabel = NSMutableAttributedString(attributedString: self.attributedText!)
+        newLabel.append(NSAttributedString(string: "  "))
+        newLabel.append(NSAttributedString.init(string: name))
+        self.attributedText = newLabel
     }
 }
