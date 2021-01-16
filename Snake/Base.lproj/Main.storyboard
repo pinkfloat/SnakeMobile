@@ -156,6 +156,9 @@
                                 <state key="normal" title="Reset to default">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="resetSettings:" destination="KR4-2Z-Y87" eventType="touchUpInside" id="Cyp-x2-fQw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5C5-Hd-F0L"/>
