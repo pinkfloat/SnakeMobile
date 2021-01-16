@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         context = appDelegate.persistentContainer.viewContext
+        fetchData()
         textFieldInfoLabel.text = "New Highscore! Your Name?"
         textFieldInfoLabel.isHidden = true
         textfieldForUserName.isHidden = true
@@ -83,6 +84,23 @@ class GameViewController: UIViewController {
             self.saveData()
         }
     }
+    
+    private func fetchData() {
+        print("Fetching Data..")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                global.boardSize = data.value(forKey: "boardSize") as! Int
+                global.gameSpeed = data.value(forKey: "gameSpeed") as! Float
+                global.sound = data.value(forKey: "sound") as! Bool
+            }
+        } catch {
+            print("Fetching data Failed!")
+        }
+    }
+    
     private func saveData() {
         print("Storing Data..")
         var entity = NSEntityDescription.entity(forEntityName: "Highscores", in: context)
