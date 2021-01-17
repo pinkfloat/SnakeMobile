@@ -391,6 +391,19 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ftz-gr-Jq9">
+                                        <rect key="frame" x="51" y="703" width="80" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Replay">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <imageReference key="image" image="arrow.clockwise.circle.fill" catalog="system" symbolScale="medium"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="restartGame:" destination="OZe-hN-8gd" eventType="touchUpInside" id="VsR-zc-XQr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -407,6 +420,7 @@
                     <navigationItem key="navigationItem" id="Vb5-Yc-v5D"/>
                     <connections>
                         <outlet property="gameWindow" destination="5xd-Vn-8Ao" id="4PJ-B0-IjJ"/>
+                        <outlet property="replayButton" destination="ftz-gr-Jq9" id="rmW-gx-te8"/>
                         <outlet property="textFieldInfoLabel" destination="xyj-OH-oBL" id="9CA-7M-qvU"/>
                         <outlet property="textfieldForUserName" destination="r0A-Ib-k0Q" id="plK-6s-zPd"/>
                     </connections>
@@ -418,6 +432,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrowtriangle.down.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrowtriangle.left.circle.fill" catalog="system" width="128" height="121"/>
         <image name="arrowtriangle.right.circle.fill" catalog="system" width="128" height="121"/>

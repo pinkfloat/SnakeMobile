@@ -12,6 +12,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var gameWindow: UIView!
     @IBOutlet weak var textFieldInfoLabel: UILabel!
     @IBOutlet weak var textfieldForUserName: UITextField!
+    @IBOutlet weak var replayButton: UIButton!
     var newHighScorePosition : Int? = nil
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var context : NSManagedObjectContext!
@@ -21,12 +22,13 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         context = appDelegate.persistentContainer.viewContext
         fetchData()
-        textFieldInfoLabel.text = "New Highscore! Your Name?"
-        textFieldInfoLabel.isHidden = true
-        textfieldForUserName.isHidden = true
+        resetGame()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        startGame()
+    }
+    private func startGame() {
         sleep(1)
         Timer.scheduledTimer(withTimeInterval: TimeInterval(global.gameSpeed), repeats: true) { timer in
             if self.snake.isRunning == false {
@@ -45,6 +47,8 @@ class GameViewController: UIViewController {
                         self.saveData()
                     }
                 }
+                self.replayButton.isHidden = false
+                self.gameWindow.bringSubviewToFront(self.replayButton)
             }
             else {
                 self.snake.update()
@@ -62,6 +66,17 @@ class GameViewController: UIViewController {
     }
     @IBAction func moveLeft(_ sender: Any) {
         snake.player.changeDirLeft()
+    }
+    private func resetGame() {
+        textFieldInfoLabel.text = "New Highscore! Your Name?"
+        textFieldInfoLabel.isHidden = true
+        textfieldForUserName.isHidden = true
+        replayButton.isHidden = true
+    }
+    @IBAction func restartGame(_ sender: UIButton) {
+        resetGame()
+        snake.reset()
+        startGame()
     }
     @IBAction func endGame(_ sender: UIButton) {
         self.snake.isRunning = false

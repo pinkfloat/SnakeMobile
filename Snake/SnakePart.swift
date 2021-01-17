@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SnakePart : GameObject, Equatable {
+class SnakePart : GameObject {
     var previous : GameObject
 
     init(boardPosition : CGPoint, direction : Direction, previousPart : GameObject, image : imagePart) {

@@ -126,6 +126,40 @@ class Game {
         return newHighscorePosition
     }
     
+    func reset() {
+        self.player.boardPos = CGPoint(x: 5, y: 10)
+        self.player.oldPos = CGPoint(x: 5, y: 10)
+        self.player.dir = Direction.right
+        self.player.oldDir = Direction.right
+        self.player.imageObj = THeadRight
+        for part in self.player.Parts.reversed() {
+            if part == self.player.Parts.first {
+                part.boardPos = CGPoint(x: 4, y: 10)
+                part.oldPos = CGPoint(x: 4, y: 10)
+                part.dir = Direction.right
+                part.oldDir = Direction.right
+                part.imageObj = TLeftRight
+            }
+            else if part.previous == self.player.Parts.first {
+                part.boardPos = CGPoint(x: 3, y: 10)
+                part.oldPos = CGPoint(x: 3, y: 10)
+                part.dir = Direction.right
+                part.oldDir = Direction.right
+                part.imageObj = TTailRight
+            }
+            else {
+                self.player.Parts.removeLast(1)
+            }
+        }
+        self.board.clearMap()
+        self.board.updatePlayerOnMap(self.player)
+        self.board.replaceApple(apple)
+        self.board.updateAppleOnMap(self.apple)
+        self.board.updateGraphics(self.player, self.apple)
+        self.appleCounterLabel.reset()
+        isRunning = true
+    }
+    
     func update() {
         self.player.moveForward()
         self.board.updateMap(self.player, self.apple)

@@ -11,7 +11,7 @@ enum Direction: Int {
     case up, right, down, left
 }
 
-class GameObject {
+class GameObject : Equatable {
     var boardPos : CGPoint
     var oldPos : CGPoint?
     var dir : Direction?
@@ -26,5 +26,9 @@ class GameObject {
     
     convenience init(boardPosition : CGPoint) {
         self.init(boardPosition : boardPosition, image : TApple)
+    }
+    
+    static func ==(lObj: GameObject, rObj: GameObject) -> Bool {
+        return lObj.boardPos == rObj.boardPos && lObj.imageObj.image == rObj.imageObj.image
     }
 }

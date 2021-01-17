@@ -74,16 +74,39 @@ class Board {
         }
     }
     
+    func clearMap () {
+        for line in 0..<fields {
+            for row in 0..<fields {
+                if line == 0 || line == fields-1 {
+                    field[line][row] = fieldCondition.wall
+                }
+                else if row == 0 || row == fields-1 {
+                    field[line][row] = fieldCondition.wall
+                }
+                else {
+                    field[line][row] = fieldCondition.empty
+                }
+                graphics[line][row]!.image = TEmpty.image
+            }
+        }
+    }
+    func updateAppleOnMap(_ apple : GameObject) {
+        field[Int(apple.boardPos.y)][Int(apple.boardPos.x)] = fieldCondition.apple
+    }
+    func updatePlayerOnMap(_ player : SnakeHead) {
+        for part in player.Parts {
+            field[Int(part.boardPos.y)][Int(part.boardPos.x)] = fieldCondition.snake
+        }
+    }
+    
     func updateMap(_ player : SnakeHead,_ apple : GameObject) {
         for line in 1..<fields-1 {
             for row in 1..<fields-1 {
                 field[line][row] = fieldCondition.empty
             }
         }
-        field[Int(apple.boardPos.y)][Int(apple.boardPos.x)] = fieldCondition.apple
-        for part in player.Parts {
-            field[Int(part.boardPos.y)][Int(part.boardPos.x)] = fieldCondition.snake
-        }
+        updateAppleOnMap(apple)
+        updatePlayerOnMap(player)
     }
     
     func updateGraphics(_ player : SnakeHead,_ apple : GameObject){

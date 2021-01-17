@@ -163,6 +163,7 @@ class AppleCounterLabel : UILabel {
     }
     
     func reset() {
+        labelScore = 0
         setShownScoreTo("0")
     }
     
