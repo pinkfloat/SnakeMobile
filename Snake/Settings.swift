@@ -32,7 +32,6 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         context = appDelegate.persistentContainer.viewContext
-        fetchData()
         
         //boardSizeSlider.maximumValue=30
         //boardSizeSlider.minimumValue=15
@@ -44,22 +43,6 @@ class SettingsViewController: UIViewController {
         gameSpeedSlider.setValue(showSpeed, animated: false)
         speedValueLabel.text = String(format: "%.1f", showSpeed)
         soundSwitch.setOn(global.sound, animated: false)
-    }
-    
-    private func fetchData() {
-        print("Fetching Data..")
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
-        request.returnsObjectsAsFaults = false
-        do {
-            let result = try context.fetch(request)
-            for data in result as! [NSManagedObject] {
-                global.boardSize = data.value(forKey: "boardSize") as! Int
-                global.gameSpeed = data.value(forKey: "gameSpeed") as! Float
-                global.sound = data.value(forKey: "sound") as! Bool
-            }
-        } catch {
-            print("Fetching data Failed!")
-        }
     }
     
     private func saveData() {
