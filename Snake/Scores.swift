@@ -10,19 +10,22 @@
 import UIKit
 import CoreData
 
-var globalHighScores : [Int] = Array (repeating: 0, count: 10)
-var globalHighScoreNames : [String] = Array (repeating: "", count: 10)
-
 class HighScoreViewController: UIViewController {
     
-    @IBOutlet weak var highScoreWindow: UIView!
-    @IBOutlet weak var resetQuestionWindow: UIView!
+    //stuff for saving data like new highscores and corresponding player name
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var context : NSManagedObjectContext!
+    
+    //conatains the highscoretable, the "resetQuestionWindow" and the back- and reset-buttons
+    @IBOutlet weak var highScoreWindow: UIView!
+    var highScoreLabels : [AppleCounterLabel] = []  //contains the ten shown highscores
+    
+    //these things ask the user, if he is shure about resetting his highscores
+    @IBOutlet weak var resetQuestionWindow: UIView!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
-    var highScoreLabels : [AppleCounterLabel] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,30 +36,6 @@ class HighScoreViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         showHighScores()
-    }
-    
-    @IBAction func askForHighscoreReset(_ sender: UIButton) {
-        resetQuestionWindow.isHidden = false
-        highScoreWindow.bringSubviewToFront(resetQuestionWindow)
-        highScoreWindow.bringSubviewToFront(infoLabel)
-        highScoreWindow.bringSubviewToFront(yesButton)
-        highScoreWindow.bringSubviewToFront(noButton)
-    }
-    
-    @IBAction func resetHighscores(_ sender: UIButton) {
-        for idx in 0..<10 {
-            globalHighScores[idx] = 0
-            globalHighScoreNames[idx] = ""
-            saveData()
-        }
-        for label in highScoreLabels {
-            label.reset()
-        }
-        resetQuestionWindow.isHidden = true
-    }
-    
-    @IBAction func breakUpReset(_ sender: UIButton) {
-        resetQuestionWindow.isHidden = true
     }
     
     private func showHighScores() {
@@ -78,32 +57,70 @@ class HighScoreViewController: UIViewController {
         }
     }
     
+    @IBAction func askForHighscoreReset(_ sender: UIButton) {
+        resetQuestionWindow.isHidden = false
+        highScoreWindow.bringSubviewToFront(resetQuestionWindow)
+        highScoreWindow.bringSubviewToFront(infoLabel)
+        highScoreWindow.bringSubviewToFront(yesButton)
+        highScoreWindow.bringSubviewToFront(noButton)
+    }
+
+//___FUNCTIONS_FOR_DELETING_HIGHSCORES___
+
+    @IBAction func resetHighscores(_ sender: UIButton) {
+        for idx in 0..<10 {
+            globalHighScores[idx] = 0
+            globalHighScoreNames[idx] = ""
+            saveData()
+        }
+        for label in highScoreLabels {
+            label.reset()
+        }
+        resetQuestionWindow.isHidden = true
+    }
+    
+    @IBAction func breakUpReset(_ sender: UIButton) {
+        resetQuestionWindow.isHidden = true
+    }
+
+//___FUNCTIONS_FOR_SAVING_HIGHSCORES___
+    
+    private func saveHighscores(_ data: NSManagedObject){
+        for idx in 0..<10 {
+            data.setValue(globalHighScores[idx], forKey: "score\(idx+1)")
+        }
+    }
+    
+    private func saveHighscoreNames(_ data: NSManagedObject){
+        for idx in 0..<10 {
+            data.setValue(globalHighScoreNames[idx], forKey: "name\(idx+1)")
+        }
+    }
+    
+    private func saveDataInModel(entityName: String,
+                                  saveFunction: (NSManagedObject) -> Void)
+    {
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
+        let data = NSManagedObject(entity: entity!, insertInto: context)
+        saveFunction(data)
+        do {
+            try context.save()
+        } catch {
+            print("Storing Data Failed!")
+        }
+    }
+    
     private func saveData() {
         print("Storing Data..")
-        var entity = NSEntityDescription.entity(forEntityName: "Highscores", in: context)
-        let actualHighScore = NSManagedObject(entity: entity!, insertInto: context)
-        for idx in 0..<10 {
-            actualHighScore.setValue(globalHighScores[idx], forKey: "score\(idx+1)")
-        }
-        do {
-            try context.save()
-        } catch {
-            print("Storing Highscore Data Failed")
-        }
-        
-        entity = NSEntityDescription.entity(forEntityName: "HighscoreUsers", in: context)
-        let actualName = NSManagedObject(entity: entity!, insertInto: context)
-        for idx in 0..<10 {
-            actualName.setValue(globalHighScoreNames[idx], forKey: "name\(idx+1)")
-        }
-        do {
-            try context.save()
-        } catch {
-            print("Storing User Names Failed")
-        }
-        
+        saveDataInModel(entityName: "Highscores", saveFunction: saveHighscores(_:))
+        saveDataInModel(entityName: "HighscoreUsers", saveFunction: saveHighscoreNames(_:))
     }
 }
+
+/* This kind of label got an apple-symbol in the left part of it's string
+ * it's used to count the apples in the snake game (in the upper right corner)
+ * and it's used ten times in the highscore table (to show the highscores)
+*/
 
 class AppleCounterLabel : UILabel {
     

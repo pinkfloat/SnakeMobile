@@ -10,16 +10,9 @@
 import UIKit
 import CoreData
 
-struct globalSettings {
-    var boardSize : Int = 20
-    var gameSpeed : Float = 0.5
-    var sound = true
-}
-
-var global = globalSettings()
-
 class SettingsViewController: UIViewController {
     
+    //stuff for saving data like actual settings
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var context : NSManagedObjectContext!
     
@@ -33,16 +26,40 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         context = appDelegate.persistentContainer.viewContext
         
-        //boardSizeSlider.maximumValue=30
-        //boardSizeSlider.minimumValue=15
         boardSizeSlider.setValue(Float(global.boardSize), animated: false)
         boardValueLabel.text = "\(global.boardSize) x \(global.boardSize)"
-        //gameSpeedSlider.maximumValue=3.0
-        //gameSpeedSlider.minimumValue=1.0
         let showSpeed = 1 / global.gameSpeed
         gameSpeedSlider.setValue(showSpeed, animated: false)
         speedValueLabel.text = String(format: "%.1f", showSpeed)
         soundSwitch.setOn(global.sound, animated: false)
+    }
+    
+    @IBAction func changeBoardSize(_ sender: Any) {
+        let size = Int(boardSizeSlider.value)
+        global.boardSize = size
+        boardValueLabel.text = "\(size) x \(size)"
+    }
+    
+    @IBAction func changeGameSpeed(_ sender: Any) {
+        global.gameSpeed = 1 / (round (gameSpeedSlider.value * 10) / 10)
+        speedValueLabel.text = String(format: "%.1f", gameSpeedSlider.value)
+    }
+    
+    @IBAction func changeSoundOption(_ sender: Any) {
+        global.sound = soundSwitch.isOn
+    }
+    
+    @IBAction func exitSettings(_ sender: UIButton) {
+        saveData()
+    }
+    
+    @IBAction func resetSettings(_ sender: UIButton) {
+        boardSizeSlider.setValue(Float(20), animated: false)
+        changeBoardSize(sender)
+        gameSpeedSlider.setValue(Float(2), animated: false)
+        changeGameSpeed(sender)
+        soundSwitch.setOn(true, animated: false)
+        changeSoundOption(sender)
     }
     
     private func saveData() {
@@ -60,27 +77,4 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    @IBAction func changeBoardSize(_ sender: Any) {
-        let size = Int(boardSizeSlider.value)
-        global.boardSize = size
-        boardValueLabel.text = "\(size) x \(size)"
-    }
-    @IBAction func changeGameSpeed(_ sender: Any) {
-        global.gameSpeed = 1 / (round (gameSpeedSlider.value * 10) / 10)
-        speedValueLabel.text = String(format: "%.1f", gameSpeedSlider.value)
-    }
-    @IBAction func changeSoundOption(_ sender: Any) {
-        global.sound = soundSwitch.isOn
-    }
-    @IBAction func exitSettings(_ sender: UIButton) {
-        saveData()
-    }
-    @IBAction func resetSettings(_ sender: UIButton) {
-        boardSizeSlider.setValue(Float(20), animated: false)
-        changeBoardSize(sender)
-        gameSpeedSlider.setValue(Float(2), animated: false)
-        changeGameSpeed(sender)
-        soundSwitch.setOn(true, animated: false)
-        changeSoundOption(sender)
-    }
 }
