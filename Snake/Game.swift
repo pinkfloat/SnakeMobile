@@ -103,7 +103,7 @@ class Game {
         }
     }
     
-    func checkIfHighScore() -> Int?{
+    func checkIfHighScore(_ playerName : String) -> Int?{
         var newHighscorePosition : Int? = nil
         for idx in 0..<10{
             //if the score is higher than a highscore in list
@@ -119,7 +119,7 @@ class Game {
                 //add ne highscore in list
                 newHighscorePosition = idx
                 globalHighScores[idx] = appleCounterLabel.labelScore
-                globalHighScoreNames[idx] = "unknown"    //if user don't enter in next step a name, this will be saved
+                globalHighScoreNames[idx] = playerName
                 break
             }
         }

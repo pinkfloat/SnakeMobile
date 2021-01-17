@@ -14,6 +14,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var textfieldForUserName: UITextField!
     @IBOutlet weak var replayButton: UIButton!
     var newHighScorePosition : Int? = nil
+    var playerName : String = "unknown"
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var context : NSManagedObjectContext!
     lazy var snake = Game(gameWindow)
@@ -38,7 +39,7 @@ class GameViewController: UIViewController {
                         sleep(5)
                         self.dismiss(animated: false, completion: nil)
                     }
-                    self.newHighScorePosition = self.snake.checkIfHighScore()
+                    self.newHighScorePosition = self.snake.checkIfHighScore(self.playerName)
                     if self.newHighScorePosition != nil {
                         self.textFieldInfoLabel.isHidden = false
                         self.textfieldForUserName.isHidden = false
@@ -87,15 +88,17 @@ class GameViewController: UIViewController {
             if sender.text != nil && sender.text != "" {
                 //the user name shouldn't be longer than 10 chars
                 if sender.text!.count <= 10 {
-                    globalHighScoreNames[newHighScorePosition!] = sender.text!
+                    textFieldInfoLabel.text = "New Highscore! Your Name?"
+                    playerName = sender.text!
                 }
                 else {
                     textFieldInfoLabel.text = "Max 10 characters!"
                 }
             }
             else {
-                globalHighScoreNames[newHighScorePosition!] = "unknown"
+                playerName = "unknown"
             }
+            globalHighScoreNames[newHighScorePosition!] = playerName
             self.saveData()
         }
     }
