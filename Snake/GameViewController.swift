@@ -31,19 +31,19 @@ class GameViewController: UIViewController {
         Timer.scheduledTimer(withTimeInterval: TimeInterval(global.gameSpeed), repeats: true) { timer in
             if self.snake.isRunning == false {
                 timer.invalidate()
-                if (self.snake.alert != nil) {
-                    self.present(self.snake.alert!, animated: true){
+                if (self.snake.alert != nil) && (self.presentedViewController == nil) {
+                    self.present(self.snake.alert!, animated: false){
                         sleep(5)
-                        self.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: false, completion: nil)
                     }
-                }
-                self.newHighScorePosition = self.snake.checkIfHighScore()
-                if self.newHighScorePosition != nil {
-                    self.textFieldInfoLabel.isHidden = false
-                    self.textfieldForUserName.isHidden = false
-                    self.gameWindow.bringSubviewToFront(self.textFieldInfoLabel)
-                    self.gameWindow.bringSubviewToFront(self.textfieldForUserName)
-                    self.saveData()
+                    self.newHighScorePosition = self.snake.checkIfHighScore()
+                    if self.newHighScorePosition != nil {
+                        self.textFieldInfoLabel.isHidden = false
+                        self.textfieldForUserName.isHidden = false
+                        self.gameWindow.bringSubviewToFront(self.textFieldInfoLabel)
+                        self.gameWindow.bringSubviewToFront(self.textfieldForUserName)
+                        self.saveData()
+                    }
                 }
             }
             else {
