@@ -105,7 +105,7 @@ class GameViewController: UIViewController {
     
     private func fetchData() {
         print("Fetching Data..")
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
+        var request = NSFetchRequest<NSFetchRequestResult>(entityName: "Settings")
         request.returnsObjectsAsFaults = false
         do {
             let result = try context.fetch(request)
@@ -116,6 +116,30 @@ class GameViewController: UIViewController {
             }
         } catch {
             print("Fetching data Failed!")
+        }
+        request = NSFetchRequest<NSFetchRequestResult>(entityName: "Highscores")
+        request.returnsObjectsAsFaults = false
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                for idx in 0..<10 {
+                    globalHighScores[idx] = data.value(forKey: "score\(idx+1)") as! Int
+                }
+            }
+        } catch {
+            print("Fetching Highscore Data Failed!")
+        }
+        
+        request = NSFetchRequest<NSFetchRequestResult>(entityName: "HighscoreUsers")
+        do {
+            let result = try context.fetch(request)
+            for data in result as! [NSManagedObject] {
+                for idx in 0..<10 {
+                    globalHighScoreNames[idx] = data.value(forKey: "name\(idx+1)") as! String
+                }
+            }
+        } catch {
+            print("Fetching User Names Failed!")
         }
     }
     
