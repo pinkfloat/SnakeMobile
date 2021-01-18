@@ -4,8 +4,7 @@
 //
 //  Created by Echo on 05.01.21.
 //
-//  used source for storing and fetching data:
-//  https://stackoverflow.com/questions/25586593/coredata-swift-how-to-save-and-load-data
+
 
 import UIKit
 import CoreData
@@ -50,7 +49,7 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func exitSettings(_ sender: UIButton) {
-        saveData()
+        saveSettings(context)
     }
     
     @IBAction func resetSettings(_ sender: UIButton) {
@@ -60,21 +59,5 @@ class SettingsViewController: UIViewController {
         changeGameSpeed(sender)
         soundSwitch.setOn(true, animated: false)
         changeSoundOption(sender)
-    }
-    
-    private func saveData() {
-        let entity = NSEntityDescription.entity(forEntityName: "Settings", in: context)
-        let actualSettings = NSManagedObject(entity: entity!, insertInto: context)
-        actualSettings.setValue(global.boardSize, forKey: "boardSize")
-        actualSettings.setValue(global.gameSpeed, forKey: "gameSpeed")
-        actualSettings.setValue(global.sound, forKey: "sound")
-        
-        print("Storing Data..")
-        do {
-            try context.save()
-        } catch {
-            print("Storing Data Failed")
-        }
-    }
-    
+    }    
 }

@@ -4,8 +4,7 @@
 //
 //  Created by Echo on 26.12.20.
 //
-//  used source for storing and fetching data:
-//  https://stackoverflow.com/questions/25586593/coredata-swift-how-to-save-and-load-data
+
 
 import UIKit
 import CoreData
@@ -57,7 +56,7 @@ class GameViewController: UIViewController {
                         self.textfieldForUserName.isHidden = false
                         self.gameWindow.bringSubviewToFront(self.textFieldInfoLabel)
                         self.gameWindow.bringSubviewToFront(self.textfieldForUserName)
-                        self.saveData()
+                        saveHighscoreData(self.context)
                     }
                 }
                 //show replay button
@@ -120,40 +119,7 @@ class GameViewController: UIViewController {
             }
             //update the correct player name on highscore table
             globalHighScoreNames[newHighScorePosition!] = playerName
-            self.saveData()
+            saveHighscoreData(self.context)
         }
-    }
-    
-//___FUNCTIONS_FOR_SAVING_HIGHSCORES___
-    
-    private func saveHighscores(_ data: NSManagedObject){
-        for idx in 0..<10 {
-            data.setValue(globalHighScores[idx], forKey: "score\(idx+1)")
-        }
-    }
-    
-    private func saveHighscoreNames(_ data: NSManagedObject){
-        for idx in 0..<10 {
-            data.setValue(globalHighScoreNames[idx], forKey: "name\(idx+1)")
-        }
-    }
-    
-    private func saveDataInModel(entityName: String,
-                                  saveFunction: (NSManagedObject) -> Void)
-    {
-        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
-        let data = NSManagedObject(entity: entity!, insertInto: context)
-        saveFunction(data)
-        do {
-            try context.save()
-        } catch {
-            print("Storing Data Failed!")
-        }
-    }
-    
-    private func saveData() {
-        print("Storing Data..")
-        saveDataInModel(entityName: "Highscores", saveFunction: saveHighscores(_:))
-        saveDataInModel(entityName: "HighscoreUsers", saveFunction: saveHighscoreNames(_:))
     }
 }

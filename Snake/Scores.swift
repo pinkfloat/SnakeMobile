@@ -4,8 +4,6 @@
 //
 //  Created by Echo on 06.01.21.
 //
-//  used source for storing and fetching data:
-//  https://stackoverflow.com/questions/25586593/coredata-swift-how-to-save-and-load-data
 
 import UIKit
 import CoreData
@@ -57,6 +55,8 @@ class HighScoreViewController: UIViewController {
         }
     }
     
+//___FUNCTIONS_FOR_DELETING_HIGHSCORES___
+    
     @IBAction func askForHighscoreReset(_ sender: UIButton) {
         resetQuestionWindow.isHidden = false
         highScoreWindow.bringSubviewToFront(resetQuestionWindow)
@@ -65,13 +65,11 @@ class HighScoreViewController: UIViewController {
         highScoreWindow.bringSubviewToFront(noButton)
     }
 
-//___FUNCTIONS_FOR_DELETING_HIGHSCORES___
-
     @IBAction func resetHighscores(_ sender: UIButton) {
         for idx in 0..<10 {
             globalHighScores[idx] = 0
             globalHighScoreNames[idx] = ""
-            saveData()
+            saveHighscoreData(self.context)
         }
         for label in highScoreLabels {
             label.reset()
@@ -81,39 +79,6 @@ class HighScoreViewController: UIViewController {
     
     @IBAction func breakUpReset(_ sender: UIButton) {
         resetQuestionWindow.isHidden = true
-    }
-
-//___FUNCTIONS_FOR_SAVING_HIGHSCORES___
-    
-    private func saveHighscores(_ data: NSManagedObject){
-        for idx in 0..<10 {
-            data.setValue(globalHighScores[idx], forKey: "score\(idx+1)")
-        }
-    }
-    
-    private func saveHighscoreNames(_ data: NSManagedObject){
-        for idx in 0..<10 {
-            data.setValue(globalHighScoreNames[idx], forKey: "name\(idx+1)")
-        }
-    }
-    
-    private func saveDataInModel(entityName: String,
-                                  saveFunction: (NSManagedObject) -> Void)
-    {
-        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
-        let data = NSManagedObject(entity: entity!, insertInto: context)
-        saveFunction(data)
-        do {
-            try context.save()
-        } catch {
-            print("Storing Data Failed!")
-        }
-    }
-    
-    private func saveData() {
-        print("Storing Data..")
-        saveDataInModel(entityName: "Highscores", saveFunction: saveHighscores(_:))
-        saveDataInModel(entityName: "HighscoreUsers", saveFunction: saveHighscoreNames(_:))
     }
 }
 
