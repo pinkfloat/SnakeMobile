@@ -9,7 +9,7 @@
 
 import CoreData
 
-//___FUNCTION_FOR_SAVING_SETTINGS___
+//___FUNCTION_TO_SAVE_SETTINGS___
 
 func saveSettings(_ context : NSManagedObjectContext!) {
     let entity = NSEntityDescription.entity(forEntityName: "Settings", in: context)
@@ -26,7 +26,7 @@ func saveSettings(_ context : NSManagedObjectContext!) {
     }
 }
 
-//___FUNCTIONS_FOR_SAVING_HIGHSCORES___
+//___FUNCTIONS_TO_SAVE_HIGHSCORES___
     
 fileprivate func saveHighscores(_ data: NSManagedObject){
     for idx in 0..<10 {
@@ -60,7 +60,7 @@ func saveHighscoreData(_ context : NSManagedObjectContext!) {
     saveDataInModel(entityName: "HighscoreUsers", saveFunction: saveHighscoreNames(_:), context)
 }
 
-//___FUNCTIONS_FOR_LOADING_OLD_HIGHSCORES_AND_SETTINGS___
+//___FUNCTIONS_TO_LOAD_OLD_HIGHSCORES_AND_SETTINGS___
 
 fileprivate func getSettings (_ data: NSManagedObject) {
     global.boardSize = data.value(forKey: "boardSize") as! Int

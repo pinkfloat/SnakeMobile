@@ -9,6 +9,13 @@
 import UIKit
 import CoreData
 
+/*
+ * This viewcontroller shows the snake game and keep it running
+ * however: since it's just a viewcontroller, it mainly manage gui stuff
+ * to let the user interact with the game
+ * you can find the backend-class "Game" in Game.swift
+*/
+
 class GameViewController: UIViewController {
     @IBOutlet weak var gameWindow: UIView!
     var newHighScorePosition : Int? = nil   //if the player got a new highscore, it's index in the highscore-array is here
@@ -37,6 +44,7 @@ class GameViewController: UIViewController {
         startGame()
     }
     
+    //the "main-function" of the snake game itself
     private func startGame() {
         sleep(1)
         //Repeat game logic until the game ended...

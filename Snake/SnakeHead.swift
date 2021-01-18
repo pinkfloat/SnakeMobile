@@ -7,6 +7,8 @@
 
 import UIKit
 
+//this thing is controlled by the player
+
 class SnakeHead : GameObject {
     var Parts : [SnakePart] = []
     
@@ -27,27 +29,26 @@ class SnakeHead : GameObject {
         self.init(boardPosition : boardPosition, direction : direction, image : image)
     }
     
+    //if the player pressed a D-Pad button, the direction of
+    //the snake head will be changed according to it
     func changeDirUp() {
         if dir != Direction.down {
             dir = Direction.up
             imageObj = THeadUp
         }
     }
-    
     func changeDirLeft() {
         if dir != Direction.right {
             dir = Direction.left
             imageObj = THeadLeft
         }
     }
-    
     func changeDirDown() {
         if dir != Direction.up {
             dir = Direction.down
             imageObj = THeadDown
         }
     }
-    
     func changeDirRight() {
         if dir != Direction.left {
             dir = Direction.right
@@ -55,6 +56,7 @@ class SnakeHead : GameObject {
         }
     }
     
+    //if the player eats an apple, the snake will get longer
     func addSnakePart(_ newPart : SnakePart) {
         Parts.append(newPart)
     }
@@ -62,6 +64,7 @@ class SnakeHead : GameObject {
     func moveForward() {
         oldPos = boardPos
         oldDir = dir!
+        //SnakeHead goes to the rectangle in front of it, according to direction
         switch(dir!) {
             case Direction.up:      boardPos.y -= 1; break;
             case Direction.right:   boardPos.x += 1; break;

@@ -7,6 +7,8 @@
 
 import UIKit
 
+// the snake image is one bmp where 64x64 px rectangles are cut out
+
 class imagePart{
     
     var image : UIImage!

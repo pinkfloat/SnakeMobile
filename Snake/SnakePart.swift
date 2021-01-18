@@ -7,6 +7,8 @@
 
 import UIKit
 
+//snake body parts and tail are instances of "SankePart"
+
 class SnakePart : GameObject {
     var previous : GameObject
 

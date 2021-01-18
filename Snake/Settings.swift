@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var context : NSManagedObjectContext!
     
+    //gui objects
     @IBOutlet weak var boardSizeSlider: UISlider!
     @IBOutlet weak var boardValueLabel: UILabel!
     @IBOutlet weak var gameSpeedSlider: UISlider!
@@ -24,6 +25,13 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         context = appDelegate.persistentContainer.viewContext
+        
+        /*
+         * the values shown by the gui objects are set to the "global values"
+         * which are either just default values (if the game is used the first time)
+         * or loaded at the programm begining from settings the user has chosen in
+         * old gaming sessions
+         */
         
         boardSizeSlider.setValue(Float(global.boardSize), animated: false)
         boardValueLabel.text = "\(global.boardSize) x \(global.boardSize)"
@@ -52,6 +60,7 @@ class SettingsViewController: UIViewController {
         saveSettings(context)
     }
     
+    //set settings to default values
     @IBAction func resetSettings(_ sender: UIButton) {
         boardSizeSlider.setValue(Float(20), animated: false)
         changeBoardSize(sender)

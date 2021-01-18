@@ -82,7 +82,8 @@ class HighScoreViewController: UIViewController {
     }
 }
 
-/* This kind of label got an apple-symbol in the left part of it's string
+/*
+ * This kind of label got an apple-symbol in the left part of it's string
  * it's used to count the apples in the snake game (in the upper right corner)
  * and it's used ten times in the highscore table (to show the highscores)
 */
