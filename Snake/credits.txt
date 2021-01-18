@@ -1,2 +1,0 @@
-Image source: https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5
-Music & Sound source: https://wingless-seraph.net/en/index

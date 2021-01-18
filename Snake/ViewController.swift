@@ -13,7 +13,8 @@ import CoreData
  * 1. -> "start game"           -> lead to "GameViewController" in GameViewController.swift
  * 2. -> "view highscores"      -> lead to "HighScoreViewController" in Scores.swift
  * 3. -> "change settings"      -> lead to "SettingsViewController" in Settings.swift
- * 4. -> close the app
+ * 4. -> "show credits"         -> lead to "CreditViewController" in Credits.swift
+ * 5. -> close the app
  *
  * ViewController loads old user settings and highscores (use of function "fetchData" from saveNrestore.swift)
  * and put them into gloabl variables (they're in GlobalVariables.swift)

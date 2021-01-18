@@ -10,6 +10,7 @@
 		5F23B12125A518B1001FE33B /* lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F23B11F25A518B1001FE33B /* lose.wav */; };
 		5F23B12225A518B1001FE33B /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F23B12025A518B1001FE33B /* win.wav */; };
 		5F23B12525A51D49001FE33B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23B12425A51D48001FE33B /* Settings.swift */; };
+		5F2BDDAB25B605C200E482BA /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BDDAA25B605C200E482BA /* Credits.swift */; };
 		5F2DFF152598884B002AEE4C /* SnakeHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DFF142598884B002AEE4C /* SnakeHead.swift */; };
 		5F2DFF1825988A88002AEE4C /* SnakePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DFF1725988A88002AEE4C /* SnakePart.swift */; };
 		5F2DFF1B2598A5EF002AEE4C /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DFF1A2598A5EF002AEE4C /* Game.swift */; };
@@ -18,7 +19,6 @@
 		5F9170C125A66FF50083295A /* Scores.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9170C025A66FF50083295A /* Scores.swift */; };
 		5F92633C25B4F968004B4FDA /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F92633B25B4F968004B4FDA /* GlobalVariables.swift */; };
 		5F9C3C12259FEA3800AAEDC9 /* gotApple.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C3C11259FEA3800AAEDC9 /* gotApple.wav */; };
-		5F9C3C15259FEB5000AAEDC9 /* credits.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C3C14259FEB5000AAEDC9 /* credits.txt */; };
 		5F9C3C19259FEC7600AAEDC9 /* snake-graphics.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 5F9C3C18259FEC7600AAEDC9 /* snake-graphics.bmp */; };
 		5FF0347825975B3300CBD1BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0347725975B3300CBD1BB /* AppDelegate.swift */; };
 		5FF0347A25975B3300CBD1BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF0347925975B3300CBD1BB /* SceneDelegate.swift */; };
@@ -36,6 +36,7 @@
 		5F23B11F25A518B1001FE33B /* lose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lose.wav; sourceTree = "<group>"; };
 		5F23B12025A518B1001FE33B /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
 		5F23B12425A51D48001FE33B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		5F2BDDAA25B605C200E482BA /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 		5F2DFF142598884B002AEE4C /* SnakeHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeHead.swift; sourceTree = "<group>"; };
 		5F2DFF1725988A88002AEE4C /* SnakePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakePart.swift; sourceTree = "<group>"; };
 		5F2DFF1A2598A5EF002AEE4C /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		5F9170C025A66FF50083295A /* Scores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scores.swift; sourceTree = "<group>"; };
 		5F92633B25B4F968004B4FDA /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		5F9C3C11259FEA3800AAEDC9 /* gotApple.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gotApple.wav; sourceTree = "<group>"; };
-		5F9C3C14259FEB5000AAEDC9 /* credits.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = credits.txt; sourceTree = "<group>"; };
 		5F9C3C18259FEC7600AAEDC9 /* snake-graphics.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = "snake-graphics.bmp"; sourceTree = "<group>"; };
 		5FF0347425975B3300CBD1BB /* Snake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF0347725975B3300CBD1BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +115,7 @@
 				5FF0348C25975FA700CBD1BB /* GameViewController.swift */,
 				5F9170C025A66FF50083295A /* Scores.swift */,
 				5F23B12425A51D48001FE33B /* Settings.swift */,
+				5F2BDDAA25B605C200E482BA /* Credits.swift */,
 				5F2DFF1A2598A5EF002AEE4C /* Game.swift */,
 				5FF0349225976D9600CBD1BB /* Board.swift */,
 				5FF0349625976FAB00CBD1BB /* GameObject.swift */,
@@ -122,7 +123,6 @@
 				5F2DFF1725988A88002AEE4C /* SnakePart.swift */,
 				5FF034992597804400CBD1BB /* Image.swift */,
 				5F6917C225B5C3BD00EDA48D /* saveNrestore.swift */,
-				5F9C3C14259FEB5000AAEDC9 /* credits.txt */,
 				5FF0347D25975B3300CBD1BB /* Main.storyboard */,
 				5FF0348225975B3600CBD1BB /* LaunchScreen.storyboard */,
 				5FF0348025975B3600CBD1BB /* Assets.xcassets */,
@@ -193,7 +193,6 @@
 			files = (
 				5F9C3C12259FEA3800AAEDC9 /* gotApple.wav in Resources */,
 				5F23B12225A518B1001FE33B /* win.wav in Resources */,
-				5F9C3C15259FEB5000AAEDC9 /* credits.txt in Resources */,
 				5F9C3C19259FEC7600AAEDC9 /* snake-graphics.bmp in Resources */,
 				5F23B12125A518B1001FE33B /* lose.wav in Resources */,
 				5FF0348425975B3600CBD1BB /* LaunchScreen.storyboard in Resources */,
@@ -215,6 +214,7 @@
 				5FF0349A2597804400CBD1BB /* Image.swift in Sources */,
 				5FF0348D25975FA700CBD1BB /* GameViewController.swift in Sources */,
 				5F92633C25B4F968004B4FDA /* GlobalVariables.swift in Sources */,
+				5F2BDDAB25B605C200E482BA /* Credits.swift in Sources */,
 				5FF0347C25975B3300CBD1BB /* ViewController.swift in Sources */,
 				5FF0349725976FAC00CBD1BB /* GameObject.swift in Sources */,
 				5F9170BD25A65FD90083295A /* snake.xcdatamodeld in Sources */,
