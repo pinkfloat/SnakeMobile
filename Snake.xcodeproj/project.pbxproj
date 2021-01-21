@@ -11,6 +11,8 @@
 		5F23B12225A518B1001FE33B /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5F23B12025A518B1001FE33B /* win.wav */; };
 		5F23B12525A51D49001FE33B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F23B12425A51D48001FE33B /* Settings.swift */; };
 		5F2BDDAB25B605C200E482BA /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2BDDAA25B605C200E482BA /* Credits.swift */; };
+		5F2CA26925B9CA080059CBC2 /* appIcon_original.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2CA26725B9CA080059CBC2 /* appIcon_original.png */; };
+		5F2CA26A25B9CA080059CBC2 /* ingame_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F2CA26825B9CA080059CBC2 /* ingame_logo.png */; };
 		5F2DFF152598884B002AEE4C /* SnakeHead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DFF142598884B002AEE4C /* SnakeHead.swift */; };
 		5F2DFF1825988A88002AEE4C /* SnakePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DFF1725988A88002AEE4C /* SnakePart.swift */; };
 		5F2DFF1B2598A5EF002AEE4C /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2DFF1A2598A5EF002AEE4C /* Game.swift */; };
@@ -37,6 +39,8 @@
 		5F23B12025A518B1001FE33B /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
 		5F23B12425A51D48001FE33B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		5F2BDDAA25B605C200E482BA /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
+		5F2CA26725B9CA080059CBC2 /* appIcon_original.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon_original.png; sourceTree = "<group>"; };
+		5F2CA26825B9CA080059CBC2 /* ingame_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ingame_logo.png; sourceTree = "<group>"; };
 		5F2DFF142598884B002AEE4C /* SnakeHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeHead.swift; sourceTree = "<group>"; };
 		5F2DFF1725988A88002AEE4C /* SnakePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakePart.swift; sourceTree = "<group>"; };
 		5F2DFF1A2598A5EF002AEE4C /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 		5F9C3C17259FEC7600AAEDC9 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				5F2CA26725B9CA080059CBC2 /* appIcon_original.png */,
+				5F2CA26825B9CA080059CBC2 /* ingame_logo.png */,
 				5F9C3C18259FEC7600AAEDC9 /* snake-graphics.bmp */,
 			);
 			path = img;
@@ -193,9 +199,11 @@
 			files = (
 				5F9C3C12259FEA3800AAEDC9 /* gotApple.wav in Resources */,
 				5F23B12225A518B1001FE33B /* win.wav in Resources */,
+				5F2CA26A25B9CA080059CBC2 /* ingame_logo.png in Resources */,
 				5F9C3C19259FEC7600AAEDC9 /* snake-graphics.bmp in Resources */,
 				5F23B12125A518B1001FE33B /* lose.wav in Resources */,
 				5FF0348425975B3600CBD1BB /* LaunchScreen.storyboard in Resources */,
+				5F2CA26925B9CA080059CBC2 /* appIcon_original.png in Resources */,
 				5FF0348125975B3600CBD1BB /* Assets.xcassets in Resources */,
 				5FF0347F25975B3300CBD1BB /* Main.storyboard in Resources */,
 			);
