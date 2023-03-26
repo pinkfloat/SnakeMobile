@@ -1,9 +1,8 @@
-//
-//  saveNrestore.swift
-//  Snake
-//
-//  Created by Echo on 18.01.21.
-//
+/*
+*   Copyright: (c) 2023 Sabrina Otto. All rights reserved.
+*   This work is licensed under the terms of the MIT license.
+*/
+
 //  used source to learn about how to store and fetch data on mobile device:
 //  https://stackoverflow.com/questions/25586593/coredata-swift-how-to-save-and-load-data
 

@@ -1,9 +1,7 @@
-//
-//  GlobalVariables.swift
-//  Snake
-//
-//  Created by Echo on 18.01.21.
-//
+/*
+*   Copyright: (c) 2023 Sabrina Otto. All rights reserved.
+*   This work is licensed under the terms of the MIT license.
+*/
 
 struct globalSettings {
     var boardSize : Int = 20

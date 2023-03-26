@@ -1,9 +1,7 @@
-//
-//  Board.swift
-//  Snake
-//
-//  Created by Echo on 26.12.20.
-//
+/*
+*   Copyright: (c) 2023 Sabrina Otto. All rights reserved.
+*   This work is licensed under the terms of the MIT license.
+*/
 
 import UIKit
 

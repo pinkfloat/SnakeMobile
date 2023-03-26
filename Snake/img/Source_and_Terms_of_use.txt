@@ -1,0 +1,11 @@
+Original source of the sprite "snake-graphics.bmp":
+©2012 - 2023 Rembound.com
+https://rembound.com/articles/creating-a-snake-game-tutorial-with-html5
+
+The other images as well as the editation of the sprite from Rembound.com
+were made by me. You are free to use my images under the terms and conditions
+of the MIT license.
+
+However - since I don't own the image from Rembound.com, please refer to
+their licensing if you consider to use the snake-graphics.bmp, that you can
+find here, for your purposes.
